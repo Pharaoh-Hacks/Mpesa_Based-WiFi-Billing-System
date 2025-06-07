@@ -1,28 +1,25 @@
 const bcrypt = require("bcryptjs");
 const db = require("../config/db");
 
-const email = "admin@example.com";  // Change this
-const password = "admin100"; // Change this
+const email = "kissingerkamau4@gmail.com";  // Change this
+const password = "admin1001"; // Change this
 
-async function createAdmin() {
-    try {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
-        console.log("Generated Hashed Password:", hashedPassword); // Debugging log
-
-        db.query("INSERT INTO admins (email, password) VALUES (?, ?)", [email, hashedPassword], (err, result) => {
-            if (err) {
-                console.error("Error inserting admin:", err);
-            } else {
-                console.log("Admin added successfully!");
-            }
-            process.exit();
-        });
-    } catch (error) {
-        console.error("Error hashing password:", error);
-        process.exit(1);
+bcrypt.hash(password, 10, (err, hash) => {
+  if (err) {
+    console.error("Error hashing password:", err);
+    process.exit(1);
+  }
+       
+    db.query(
+      "INSERT INTO admins (email, password) VALUES (?, ?)",
+      [email, hash], 
+      (err, _result) => {
+        if (err) {
+            console.error("Error inserting admin:", err);
+        } else {
+            console.log("Admin added successfully!");
+        }
+        process.exit();
     }
-}
-
-createAdmin();
+  );
+});

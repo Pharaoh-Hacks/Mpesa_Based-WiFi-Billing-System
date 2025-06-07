@@ -26,7 +26,7 @@ router.get("/admin/summary", authMiddleware, async (req, res) => {
 
     db.query(summaryQuery, (err, results) => {
         if (err) {
-            console.error("Database error:", err);
+            console.error(" error:", err);
             return res.status(500).json({ error: "Internal Server Error" });
         }
         res.json(results[0]); // ✅ Return summary data
