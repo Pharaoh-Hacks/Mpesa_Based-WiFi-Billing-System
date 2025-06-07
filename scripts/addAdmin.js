@@ -1,8 +1,8 @@
 const bcrypt = require("bcryptjs");
 const db = require("../config/db");
 
-const email = "kissingerkamau4@gmail.com";  // Change this
-const password = "admin1001"; // Change this
+const email = "adm@gmail.com";  // Change this
+const password = "ad"; // Change this
 
 bcrypt.hash(password, 10, (err, hash) => {
   if (err) {
